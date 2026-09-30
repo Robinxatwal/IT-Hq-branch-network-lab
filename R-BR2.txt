@@ -1,0 +1,90 @@
+Building configuration...
+
+Current configuration : 926 bytes
+!
+version 15.1
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname R-BR2
+!
+!
+!
+!
+ip dhcp excluded-address 192.168.50.1 192.168.50.10
+!
+ip dhcp pool STAFF
+ network 192.168.50.0 255.255.255.0
+ default-router 192.168.50.1
+ dns-server 8.8.8.8
+!
+!
+!
+ip cef
+no ipv6 cef
+!
+!
+!
+!
+license udi pid CISCO1941/K9 sn FTX1524N62D-
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+no ip domain-lookup
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0
+ ip address 10.0.13.2 255.255.255.252
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/1
+ ip address 192.168.50.1 255.255.255.0
+ duplex auto
+ speed auto
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+router ospf 1
+ log-adjacency-changes
+ network 10.0.13.0 0.0.0.3 area 0
+ network 192.168.50.0 0.0.0.255 area 0
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+!
+!
+!
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+end
